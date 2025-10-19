@@ -1,0 +1,49 @@
+﻿@* _AddTaskModal.cshtml *@
+
+<div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+       <div class="modal-header bg-gradient-secondary">
+         <h5 class="modal-title">Add New Task</h5>
+         <button type="button" class="btn-close bg-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+@*       Add Model Form Details *@
+      <div class="modal-body">
+        <form id="addTaskForm" novalidate>
+
+          <div class="form-group">
+            <label>Title</label>
+            <div class="input-group mb-3">
+              <input name="Title" type="text" class="form-control" placeholder="Title.." required>
+            </div>
+
+            <label>Description</label>
+            <div class="input-group mb-3">
+              <textarea name="Description" class="form-control" placeholder="Description.." required></textarea>
+            </div>
+
+            <label>Status</label>
+            <div class="input-group mb-3">
+              <select name="Status" class="form-select">
+                <option>To Do</option>
+                <option>In Progress</option>
+                <option>Done</option>
+              </select>
+            </div>
+
+            <label>Due Date</label>
+            <div class="input-group mb-3">
+              <input name="DueDate" type="date" class="form-control" required>
+            </div>
+          </div>
+        </form>
+      </div>
+
+@*       save & close btns *@
+      <div class="modal-footer">
+        <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn bg-gradient-success" id="saveTaskBtn">Save Task</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Task Dashboard";
+}
+<div class="container-fluid py-3">
+    <div class="row" id="dashboardCards">
+        <div class="col-12 text-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="text-muted mt-2">Loading dashboard...</p>
+        </div>
+    </div>
+</div>
+
+@* Main Grid Loader  *@
+
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header pb-0">
+                    <h6>Task Details Table</h6>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                    <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">#</th>
+                                    <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Task Id</th>
+                                    <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Task Details</th>
+                                   @*  <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Description</th> *@
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">
+                                        Status
+                                        <select id="statusFilter" class="form-select form-select-sm mt-1" style="font-size: 0.75rem; width: auto; display: inline-block;">
+                                            <option value="All">All</option>
+                                            <option value="To Do">To Do</option>
+                                            <option value="In Progress">In Progress</option>
+                                            <option value="Done">Done</option>
+                                        </select>
+                                    </th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Due Date</th>
+                                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-4">
+                                        <div class="spinner-border spinner-border-sm" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <span class="ms-2">Loading tasks...</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="card-footer">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination pagination-sm justify-content-center mb-0" id="paginationContainer">
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Add And Edit Models *@
+
+@await Html.PartialAsync("_AddTaskModal")
+@await Html.PartialAsync("_EditTaskModal")
+
+
+@section Scripts {
+
+@*     //Block Index Loging *@
+    <script>
+        $(document).ready(function () {
+            const user = localStorage.getItem("user");
+            if (!user) {
+                window.location.href = "/Login";
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/GetTaskApi.js"></script>
+    <script src="~/js/PostTaskApi.js"></script>
+    <script src="~/js/EditTaskApi.js"></script>
+    <script src="~/js/Search.js"></script>
+    <script src="~/js/count.js"></script>
+}

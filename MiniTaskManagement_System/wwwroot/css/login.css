@@ -1,0 +1,47 @@
+﻿/* login.css - Login page styles */
+body {
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.login-container {
+    min-height: 80vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 500px;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 15px;
+}
+
+.card-header img {
+    transition: transform 0.3s ease;
+}
+
+    .card-header img:hover {
+        transform: scale(1.1);
+    }
+
+.btn-round {
+    border-radius: 50px;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #00b4d8, #0077b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.form-control:focus {
+    border-color: #00b4d8;
+    box-shadow: 0 0 0 0.25rem rgba(0, 180, 216, 0.25);
+}

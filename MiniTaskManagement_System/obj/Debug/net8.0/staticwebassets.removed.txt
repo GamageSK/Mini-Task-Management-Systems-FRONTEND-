@@ -1,0 +1,2 @@
+D:\kusal\test\MinTaskManagement\MiniTaskManagement_System\MiniTaskManagement_System\wwwroot\images\taskmangelogo.png
+D:\kusal\test\MinTaskManagement\MiniTaskManagement_System\MiniTaskManagement_System\wwwroot\images\taskslogo.png

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>@ViewData["Title"] - MiniTaskManagement_System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MiniTaskManagement_System.styles.css" asp-append-version="true" />
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+    <!-- Nucleo Icons -->
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+
+    <!-- Sweet Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link id="pagestyle" href="/css/argon-dashboard.css" rel="stylesheet" />
+
+</head>
+<body class="g-sidenav-show   bg-gray-100">
+    <div class="min-height-300 bg-dark position-absolute w-100"></div>
+    <header>
+        <main class="main-content position-relative border-radius-lg ">
+        @*     main nav Bar  *@
+            <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+                <div class="container-fluid py-1 px-3">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+                            <a class="navbar-brand d-flex align-items-center" asp-area="" asp-page="/Index">
+                                <img src="~/images/task.png" width="40" height="40" class="d-inline-block align-top me-2" alt="Logo">
+                                <h6 class="font-weight-bolder text-white mb-0">Mini Task Management Systems</h6>
+                            </a>
+                        </ol>
+                    </nav>
+
+                  @*   search Button *@
+                    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group">
+                                <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                                <input id="searchInput" type="search" class="form-control" placeholder="Search tasks..." aria-label="Search">
+                            </div>
+                        </div>
+
+                        @* Add Task Button *@
+                        <ul class="navbar-nav justify-content-end flex-row flex-wrap gap-2">
+                            <li class="nav-item d-flex align-items-center">
+                                <button id="addTaskBtn" type="button" class="btn bg-gradient-info btn-sm mb-0 w-auto btn-tooltip"
+                                        data-bs-toggle="modal" data-bs-placement="bottom" title="Add New Task" data-container="body" data-animation="true" data-bs-target="#addTaskModal">
+                                    <i class="bi bi-plus-circle me-1"></i>
+                                    <span class="d-none d-sm-inline">Add Task</span>
+                                </button>
+                            </li>
+                          @*   Logout Btn *@
+                            <li class="nav-item d-flex align-items-center">
+                                <button id="logoutBtn" class="btn btn-danger btn-sm mb-0">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                </button>
+                            </li>
+                        </ul>
+                       
+                        
+                    </div>
+                </div>
+            </nav>
+
+           @*  call to main grid *@
+            @RenderBody()
+        </main>
+    </header>
+
+ @*    footer *@
+    <footer class="footer text-muted text-center py-3">
+        <div class="container">
+            <p class="mb-0 small">
+                &copy; 2025 - <strong>Mini Task Management System</strong><br class="d-sm-none">
+                By <strong>Sanjula Kusal Gamage</strong>
+            </p>
+        </div>
+    </footer>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/auth.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
