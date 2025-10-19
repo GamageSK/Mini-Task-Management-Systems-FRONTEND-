@@ -5,7 +5,8 @@ This project is a **Mini Task Management System** built with:
 - **Frontend:** Razor Pages using **ASP.NET MVC**
 - **Backend:** **ASP.NET Core MVC** with **Entity Framework (EF Core)**
 - **Database:** **Microsoft SQL Server (MSSQL)**
-
+  --there have demo Video and Screen Shots of my projects
+https://drive.google.com/drive/folders/1rZssNi0Y-0hZSm3W-ukRGkCxxTPfb2iG?usp=sharing
 ---
 
 ## ⚙️ Setup Instructions
