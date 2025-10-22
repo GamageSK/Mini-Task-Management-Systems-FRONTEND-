@@ -16,11 +16,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\kusal\\test\\MinTaskManagement\\MiniTaskManagement_System\\MiniTaskManagement_System\\MiniTaskManagement_System.csproj",
+      "projectUniqueName": "D:\\kusal\\sists\\frontend\\Mini-Task-Management-Systems-FRONTEND-\\MiniTaskManagement_System\\MiniTaskManagement_System.csproj",
       "projectName": "MiniTaskManagement_System",
-      "projectPath": "D:\\kusal\\test\\MinTaskManagement\\MiniTaskManagement_System\\MiniTaskManagement_System\\MiniTaskManagement_System.csproj",
+      "projectPath": "D:\\kusal\\sists\\frontend\\Mini-Task-Management-Systems-FRONTEND-\\MiniTaskManagement_System\\MiniTaskManagement_System.csproj",
       "packagesPath": "C:\\Users\\7000129\\.nuget\\packages\\",
-      "outputPath": "D:\\kusal\\test\\MinTaskManagement\\MiniTaskManagement_System\\MiniTaskManagement_System\\obj\\",
+      "outputPath": "D:\\kusal\\sists\\frontend\\Mini-Task-Management-Systems-FRONTEND-\\MiniTaskManagement_System\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\DevExpress 21.1\\Components\\Offline Packages",

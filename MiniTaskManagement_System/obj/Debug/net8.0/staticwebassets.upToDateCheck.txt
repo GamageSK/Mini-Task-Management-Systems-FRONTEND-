@@ -15,6 +15,7 @@ wwwroot\js\login.js
 wwwroot\js\PostTaskApi.js
 wwwroot\js\Search.js
 wwwroot\js\site.js
+wwwroot\js\TaskList.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css

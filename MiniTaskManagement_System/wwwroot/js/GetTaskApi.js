@@ -9,13 +9,27 @@ $(document).ready(function () {
 });
 
 // Call to Load Task Details
+// Call to Load Task Details
 function loadTasks() {
     $.ajax({
         url: 'https://localhost:7020/api/Task/GetTasks',
         type: 'GET',
         success: function (tasks) {
+            // Check Over Dude Task
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            tasks.forEach(task => {
+                const dueDate = new Date(task.dueDate);
+                dueDate.setHours(0, 0, 0, 0);
+
+                if (task.status !== "Done" && dueDate < today) {
+                    task.status = "Overdue";
+                }
+            });
+
             allTasks = tasks;
-            filteredTasks = tasks; 
+            filteredTasks = tasks;
 
             if (typeof updateTaskList === 'function') {
                 updateTaskList(tasks);
@@ -35,6 +49,7 @@ function loadTasks() {
         }
     });
 }
+
 
 function showPage(page) {
     currentPage = page;
@@ -61,11 +76,30 @@ function populateTaskTable(tasks) {
             statusClass = "badge badge-sm bg-gradient-success";
         } else if (task.status === "In Progress") {
             statusClass = "badge badge-sm bg-gradient-warning";
-        } else {
+        } else if (task.status === "To Do") {
             statusClass = "badge badge-sm bg-gradient-secondary";
+        } else if (task.status === "Overdue") {
+            statusClass = "badge badge-sm bg-gradient-danger";
         }
 
         const rowNumber = ((currentPage - 1) * rowsPerPage) + index + 1;
+
+
+        let editButton = "";
+        let deleteButton = "";
+
+        if (task.status === "To Do") {
+            editButton = `<button class="btn bg-gradient-primary btn-sm" title="Edit" onclick="openEditModal(${task.id})"><i class="bi bi-pencil-square"></i></button>`;
+            deleteButton = `<button class="btn bg-gradient-danger btn-sm" title="Delete" onclick="deleteTask(${task.id})"><i class="bi bi-trash3"></i></button>`;
+        }
+        else if (task.status === "In Progress") {
+            editButton = `<button class="btn bg-gradient-primary btn-sm" title="Edit" onclick="openEditModal(${task.id})"><i class="bi bi-pencil-square"></i></button>`;
+            deleteButton = `<button class="btn bg-gradient-secondary btn-sm disabled-btn" data-message="Cannot delete task in progress"><i class="bi bi-trash3"></i></button>`;
+        }
+        else if (task.status === "Done") {
+            editButton = `<button class="btn bg-gradient-secondary btn-sm disabled-btn" data-message="Cannot edit completed task"><i class="bi bi-pencil-square"></i></button>`;
+            deleteButton = `<button class="btn bg-gradient-secondary btn-sm disabled-btn" data-message="Cannot delete completed task"><i class="bi bi-trash3"></i></button>`;
+        }
 
         const row = `
                      <tr>
@@ -94,12 +128,8 @@ function populateTaskTable(tasks) {
                         <span class="text-secondary text-sm font-weight-bold">${task.dueDate.split('T')[0]}</span>
                       </td>
                       <td class="align-middle text-center">
-                        <button type="button" class="btn bg-gradient-primary btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Task" onclick="openEditModal(${task.id})">
-                         <i class="bi bi-pencil-square"></i>
-                        </button>
-                       <button type="button" class="btn bg-gradient-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Task" onclick="deleteTask(${task.id})">
-                           <i class="bi bi-trash3"></i>
-                       </button>
+                         ${editButton}
+                    ${deleteButton}
                       </td>
                     </tr>`;
         tbody.append(row);
@@ -127,6 +157,26 @@ function updatePagination() {
 }
 
 // Open edit modal with task data
+//function openEditModal(taskId) {
+//    $.ajax({
+//        url: `https://localhost:7020/api/Task/GetTasks/${taskId}`,
+//        type: 'GET',
+//        success: function (task) {
+//            $('#editTaskId').val(task.id);
+//            $('#editTitle').val(task.title);
+//            $('#editDescription').val(task.description);
+//            $('#editStatus').val(task.status);
+
+//            $('#editDueDate').val(task.formattedDueDate);
+
+//            $('#editTaskModal').modal('show');
+//        },
+//        error: function (xhr, status, error) {
+//            alert('Error loading task data: ' + error);
+//        }
+//    });
+//}
+
 function openEditModal(taskId) {
     $.ajax({
         url: `https://localhost:7020/api/Task/GetTasks/${taskId}`,
@@ -135,10 +185,36 @@ function openEditModal(taskId) {
             $('#editTaskId').val(task.id);
             $('#editTitle').val(task.title);
             $('#editDescription').val(task.description);
-            $('#editStatus').val(task.status);
-
             $('#editDueDate').val(task.formattedDueDate);
 
+            const statusSelect = $('#editStatus');
+            statusSelect.empty(); // Clear existing options
+
+            // Set status options dynamically based on current status
+            if (task.status === "To Do") {
+                statusSelect.append('<option value="To Do" selected>To Do</option>');
+                statusSelect.append('<option value="In Progress">In Progress</option>');
+                statusSelect.append('<option value="Done">Done</option>');
+                statusSelect.append('<option value="Overdue">Overdue</option>');
+            }
+            else if (task.status === "In Progress") {
+                statusSelect.append('<option value="In Progress" selected>In Progress</option>');
+                statusSelect.append('<option value="Done">Done</option>');
+                statusSelect.append('<option value="Overdue">Overdue</option>');
+            }
+            else if (task.status === "Done") {
+                // “Done” tasks can’t change status
+                statusSelect.append('<option value="Done" selected>Done</option>');
+                statusSelect.prop('disabled', true);
+            }
+            else if (task.status === "Overdue") {
+                // “Overdue” can only move to “In Progress” or “Done”
+                statusSelect.append('<option value="Overdue" selected>Overdue</option>');
+                statusSelect.append('<option value="In Progress">In Progress</option>');
+                statusSelect.append('<option value="Done">Done</option>');
+            }
+
+            // Show modal
             $('#editTaskModal').modal('show');
         },
         error: function (xhr, status, error) {
@@ -146,6 +222,12 @@ function openEditModal(taskId) {
         }
     });
 }
+
+
+
+
+
+
 
 // Delete task function
 function deleteTask(taskId) {

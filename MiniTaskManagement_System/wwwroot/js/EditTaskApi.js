@@ -2,6 +2,10 @@
 
 
 $(document).ready(function () {
+
+    const today = new Date().toISOString().split('T')[0];
+    $('#editDueDate').attr('min', today); 
+
     $('#updateTaskBtn').on('click', function () {
         updateTask();
     });
@@ -10,12 +14,15 @@ $(document).ready(function () {
 function updateTask() {
     const taskId = $('#editTaskId').val();
 
+ 
+
     const taskData = {
         title: $('#editTitle').val(),
         description: $('#editDescription').val(),
         status: $('#editStatus').val(),
         dueDate: $('#editDueDate').val() + 'T00:00:00.000Z'
     };
+    
 
     // SweetAlert2
     if (!taskData.title || !taskData.description || !taskData.dueDate) {

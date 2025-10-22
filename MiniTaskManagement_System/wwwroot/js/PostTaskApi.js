@@ -1,5 +1,9 @@
 ﻿// wwwroot/js/PostTaskApi.js
 $(document).ready(function () {
+
+    const today = new Date().toISOString().split('T')[0];
+    $('input[name="DueDate"]').attr('min', today);
+
     $('#saveTaskBtn').on('click', function () {
         createTask();
     });

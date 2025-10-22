@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MiniTaskManagement_System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4ea6f1b1279b670d7edb899370f3ae449d02359b")]
 [assembly: System.Reflection.AssemblyProductAttribute("MiniTaskManagement_System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MiniTaskManagement_System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
